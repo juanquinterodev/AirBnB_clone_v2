@@ -52,10 +52,10 @@ class HBNBCommand(cmd.Cmd):
                     if "_" in keyv[1]:
                         keyv[1] = keyv[1].replace("_", " ")
                     setattr(obj, keyv[0], keyv[1][1:-1])
-                elif is_int(keyv[1]):
-                    setattr(obj, keyv[0], int(keyv[1]))
-                elif is_float(keyv[1]):
+                elif "." in keyv[1]:
                     setattr(obj, keyv[0], float(keyv[1]))
+                else:
+                    setattr(obj, keyv[0], int(keyv[1]))
                     
             obj.save()
             print("{}".format(obj.id))

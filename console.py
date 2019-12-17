@@ -51,7 +51,8 @@ class HBNBCommand(cmd.Cmd):
                 if kv[1].startswith('"') and keyv[1].endswith('"'):
                     if "_" in keyv[1]:
                         keyv[1] = keyv[1].replace("_", " ")
-                    setattr(obj, keyv[0], keyv[1][1:-1])
+                    keyv[1] = keyv[1].replace('"', '')
+                    setattr(obj, keyv[0], keyv[1])
                 elif "." in keyv[1]:
                     setattr(obj, keyv[0], float(keyv[1]))
                 else:

@@ -44,11 +44,11 @@ class HBNBCommand(cmd.Cmd):
             my_list = line.split(" ")
             obj = eval("{}()".format(my_list[0]))
             for param in my_list[1:]:
-                if "=" not in my_list[param]:
+                if "=" not in param:
                     continue
                 keyv = param.split("=")
                 
-                if kv[1].startswith('"') and keyv[1].endswith('"'):
+                if keyv[1].startswith('"') and keyv[1].endswith('"'):
                     if "_" in keyv[1]:
                         keyv[1] = keyv[1].replace("_", " ")
                     keyv[1] = keyv[1].replace('"', '')

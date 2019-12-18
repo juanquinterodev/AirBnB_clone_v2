@@ -3,6 +3,8 @@
 import uuid
 import models
 from datetime import datetime
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String, DateTime
 
 
 Base = declarative_base()
@@ -16,7 +18,6 @@ class BaseModel:
     id = Column(String(60), primary_key=True, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow(), nullable=False)
     updated_at = Column(DateTime, default=datetime.utcnow(), nullable=False)
-
 
     def __init__(self, *args, **kwargs):
         """Instantiation of base model class
@@ -57,7 +58,7 @@ class BaseModel:
         """
         self.updated_at = datetime.now()
         models.storage.new(self)
-        models0.storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """creates dictionary of the class  and returns
@@ -74,6 +75,6 @@ class BaseModel:
 
     def delete(self):
         """
-        delete the current instance from the storage
+        delete storage
         """
         models.storage.delete()

@@ -11,6 +11,9 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from shlex import split
+from sqlalchemy import Table, Column, Integer, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 
 
 class HBNBCommand(cmd.Cmd):

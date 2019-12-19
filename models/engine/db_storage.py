@@ -13,6 +13,7 @@ from models.base_model import BaseModel, Base
 from os import getenv
 
 
+
 class DBStorage:
     """
     This class is the database storage engine
@@ -31,7 +32,7 @@ class DBStorage:
                                              getenv('HBNB_MYSQL_DB')),
                                       pool_pre_ping=True)
         if getenv('HBNB_ENV') == 'test':
-            Base.metadata.drop_all(bind=self.__engine)
+            Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         """
@@ -75,7 +76,3 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
         self.__session = scoped_session(sessionmaker(bind=self.__engine,
                                                      expire_on_commit=False))
-
-    def close(self):
-        """ close everything down """
-        self.__session.remove()

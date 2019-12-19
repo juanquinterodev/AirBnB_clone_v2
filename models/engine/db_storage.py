@@ -39,16 +39,16 @@ class DBStorage:
         """
         query all objects from the current db session, based on class name
         """
-        my_list = ["State", "City", "User"]
+        my_list = [State, City, User, Place]
         dictio = {}
         if cls is None:
             for table in my_list:
-                query = self.__session.query(eval(table)).all()
+                query = self.__session.query(table).all()
                 for obj in query:
                     key = "{}.{}".format(type(obj).__name__, obj.id)
                     dictio[key] = obj
         else:
-            query = self.__session.query(eval(cls)).all()
+            query = self.__session.query(cls).all()
             for obj in query:
                 key = "{}.{}".format(type(obj).__name__, obj.id)
                 dictio[key] = obj

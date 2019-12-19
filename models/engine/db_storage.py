@@ -11,6 +11,7 @@ from models.place import Place
 from models.review import Review
 from models.base_model import BaseModel, Base
 from os import getenv
+import sqlalchemy as db
 
 
 
@@ -38,16 +39,20 @@ class DBStorage:
         """
         query all objects from the current db session, based on class name
         """
+        my_list = ["State", "City"]
+        dictio = {}
         if cls is None:
-            results = self.__session.query(City, State, User, Place,
-                                           Review).all()
+            for table in my_list:
+                query = self.__session.query(eval(table)).all()
+                for obj in query:
+                    key = "{}.{}".format(type(obj).__name__, obj.id)
+                    dictio[key] = obj
         else:
-            results = self.__session.query(cls).all()
-        result_dict = {}
-        for row in results:
-            key = ".".join([type(row).__name__, row.id])
-            result_dict[key] = row
-        return result_dict
+            query = self.__session.query(eval(cls)).all()
+            for obj in query:
+                key = "{}.{}".format(type(obj).__name__, obj.id)
+                dictio[key] = obj
+        return dictio
 
     def new(self, obj):
         """

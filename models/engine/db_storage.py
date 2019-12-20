@@ -39,7 +39,7 @@ class DBStorage:
         """
         query all objects from the current db session, based on class name
         """
-        my_list = ["State", "City", "User", "Place", "Review"]
+        my_list = ["State", "City", "User", "Place", "Review", "Amenity"]
         dictio = {}
         if cls is None:
             for table in my_list:

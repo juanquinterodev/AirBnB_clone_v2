@@ -5,7 +5,7 @@ from fabric.operations import put, run, sudo
 import time
 import os.path
 
-env.hosts = ['66.70.184.233', '34.229.242.92']
+env.hosts = ['34.74.135.225', '35.196.217.180']
 # env.use_ssh_config = True
 
 

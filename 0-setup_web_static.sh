@@ -17,4 +17,4 @@ sudo echo "
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data/
 sudo sed -i "38 i \location /hbnb_static {\n\talias /data/web_static/current/;\n\t}\n" /etc/nginx/sites-enabled/default
-sudo service nginx restart
+sudo service nginx start

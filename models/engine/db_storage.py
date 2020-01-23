@@ -17,14 +17,14 @@ import sqlalchemy as db
 
 class DBStorage:
     """
-    This class is the database storage engine
+    database storage engine
     """
     __engine = None
     __session = None
 
     def __init__(self):
         """
-        Initialize an instance
+        Initialize instance
         """
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(getenv('HBNB_MYSQL_USER'),
@@ -37,7 +37,7 @@ class DBStorage:
 
     def all(self, cls=None):
         """
-        query all objects from the current db session, based on class name
+        query objects from the current db session, based on class name
         """
         my_list = ["State", "City", "User", "Place", "Review", "Amenity"]
         dictio = {}
@@ -56,7 +56,7 @@ class DBStorage:
 
     def new(self, obj):
         """
-        add the object to the current databse session
+        add the object to the current database session
         """
         if obj:
             self.__session.add(obj)
@@ -76,7 +76,7 @@ class DBStorage:
 
     def reload(self):
         """
-        create all tables in the database
+        create tables in the database
         """
         Base.metadata.create_all(self.__engine)
         self.__session = scoped_session(sessionmaker(bind=self.__engine,
